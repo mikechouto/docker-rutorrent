@@ -12,6 +12,7 @@ COPY patches/ /defaults/patches/
 RUN \
  echo "**** install runtime packages ****" && \
  apk add --no-cache \
+	git \
 	bind-tools \
 	ca-certificates \
 	curl \
@@ -28,7 +29,6 @@ RUN \
 	php7-json  \
 	php7-mbstring \
 	php7-pear \
-	rtorrent \
 	screen \
 	sox \
 	tar \
@@ -36,6 +36,13 @@ RUN \
 	unzip \
 	wget \
 	zip && \
+ 
+ echo "**** install rtorrent ****" && \
+ git clone https://github.com/mikechouto/alpine-repo.git && \
+ apk add --no-cache --allow-untrusted ./alpine-repo/libtorrent-0.13.2-r0.apk ./alpine-repo/rtorrent-0.9.2-r1.apk && \
+ apk del git && \
+ rm -rf ./alpine-repo && \ 
+ 
  echo "**** install webui ****" && \
  mkdir -p \
 	/usr/share/webapps/rutorrent \
