@@ -22,7 +22,7 @@ RUN \
 	gzip \
 	logrotate \
 	mediainfo \
-	nginx \
+	nginx-mod-http-geoip \
 	php7 \
 	php7-cgi \
 	php7-fpm \
